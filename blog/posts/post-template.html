@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What I Learned from Two Weeks Offline — Your Blog Name</title>
+  <meta name="description" content="I packed one bag, left my routine behind, and spent two weeks in the quiet." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <style>
+    /* Reading progress bar */
+    .reading-progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      z-index: 200;
+      transition: transform 0.1s linear;
+    }
+  </style>
+</head>
+<body>
+
+<div class="reading-progress" role="progressbar" aria-label="Reading progress"></div>
+
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">Your Blog</a>
+    <ul class="nav-links" role="list">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../archive.html">Posts</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li>
+        <a href="https://youtube.com/@yourchannel" class="yt-link" target="_blank" rel="noopener">
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M13.7 1.56A1.75 1.75 0 0 0 12.47.33C11.37 0 7 0 7 0S2.63 0 1.53.33A1.75 1.75 0 0 0 .3 1.56C0 2.66 0 5 0 5s0 2.34.3 3.44a1.75 1.75 0 0 0 1.23 1.23C2.63 10 7 10 7 10s4.37 0 5.47-.33a1.75 1.75 0 0 0 1.23-1.23C14 7.34 14 5 14 5s0-2.34-.3-3.44z" fill="currentColor"/>
+            <path d="M5.6 7.14L9.24 5 5.6 2.86v4.28z" fill="#1A1A1A"/>
+          </svg>
+          YouTube
+        </a>
+      </li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
+        <line x1="0" y1="1" x2="22" y2="1" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="0" y1="8" x2="22" y2="8" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="0" y1="15" x2="22" y2="15" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+
+    <!-- POST HEADER -->
+    <header class="post-hero">
+      <p class="post-category">Travel</p>
+      <h1>What I Learned from Two Weeks Offline in the Mountains</h1>
+      <p class="post-excerpt">I packed one bag, left my routine behind, and spent two weeks in the quiet. Here's what came back with me when I returned.</p>
+      <div class="post-meta">
+        <span>June 15, 2026</span>
+        <span class="dot"></span>
+        <span>6 min read</span>
+        <span class="dot"></span>
+        <a href="../about.html" style="border-bottom: 1px solid var(--divider);">Your Name</a>
+      </div>
+    </header>
+
+    <!-- POST BODY — Write your content here -->
+    <article class="post-body">
+
+      <!-- Cover image (optional) -->
+      <!-- <img src="../images/mountains.jpg" alt="Mountain landscape" /> -->
+
+      <p>It started as an experiment. I'd been feeling that familiar low-grade restlessness — the kind that builds slowly, where you're technically fine but quietly exhausted from all the small decisions and inputs and notifications that stack up without you noticing.</p>
+
+      <p>So I booked a small cabin with no wifi. Packed one bag. Told a few people where I'd be. And left.</p>
+
+      <h2>The first three days were the hardest</h2>
+
+      <p>I underestimated how much of my day was reflexive screen-checking. I'd reach for my phone and find nothing new waiting — no messages, no updates, no feed pulling at me. It felt strange. Then uncomfortable. Then, slowly, spacious.</p>
+
+      <p>By day four, I started writing again. Not for anyone — just longhand in a notebook, thoughts that had been waiting for a quieter moment to surface. I'd forgotten how different it feels to write when no one is watching.</p>
+
+      <blockquote>
+        "Boredom turned out to be a doorway, not a problem to solve."
+      </blockquote>
+
+      <h2>What I brought back</h2>
+
+      <p>Two weeks is long enough to notice patterns. I came back with a few quiet commitments — not rules, just intentions. Phone out of the bedroom. Slower mornings. More walks without a destination.</p>
+
+      <p>I also came back with a new appreciation for how much I genuinely love the things I'd been half-doing. Writing. Cooking. Talking to people I love without a screen nearby.</p>
+
+      <p>I'm not going to pretend I've cracked some code. I'm still figuring it out. But something shifted, and this felt like the right place to write about it.</p>
+
+      <p>More soon.</p>
+
+      <hr style="border:none; border-top: 1px solid var(--divider); margin: 3rem 0;" />
+
+      <!-- Post footer -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+        <a href="../archive.html" class="read-more">&larr; All posts</a>
+        <div class="post-meta">
+          <span>If this resonated, share it:</span>
+          <a href="https://twitter.com/intent/tweet?text=What+I+Learned+from+Two+Weeks+Offline&url=" style="color: var(--accent-dark); font-weight:500;">Twitter</a>
+        </div>
+      </div>
+
+    </article>
+  </div>
+</main>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="container">
+    <h2>Enjoyed this?</h2>
+    <p>Get new posts in your inbox — once or twice a month, nothing more.</p>
+    <form class="newsletter-form" novalidate>
+      <input type="email" placeholder="Your email address" required aria-label="Email address" />
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-logo">Your Blog</span>
+      <ul class="footer-links" role="list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../archive.html">Posts</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="https://youtube.com/@yourchannel" target="_blank" rel="noopener">YouTube</a></li>
+      </ul>
+      <span class="footer-copy">&copy; 2026 Your Blog</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
