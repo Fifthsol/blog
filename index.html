@@ -9,7 +9,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garant:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/style.css" />
 
@@ -23,19 +23,39 @@
 <!-- NAV -->
 <nav class="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">Lawrence Sun</a>
+    <a href="index.html" class="nav-logo">孙维五</a>
     <ul class="nav-links" role="list">
       <li><a href="index.html">Home</a></li>
       <li><a href="archive.html">Posts</a></li>
       <li><a href="about.html">About</a></li>
       <li>
-        <a href="https://youtube.com/@yourchannel" class="yt-link" target="_blank" rel="noopener">
-          <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M13.7 1.56A1.75 1.75 0 0 0 12.47.33C11.37 0 7 0 7 0S2.63 0 1.53.33A1.75 1.75 0 0 0 .3 1.56C0 2.66 0 5 0 5s0 2.34.3 3.44a1.75 1.75 0 0 0 1.23 1.23C2.63 10 7 10 7 10s4.37 0 5.47-.33a1.75 1.75 0 0 0 1.23-1.23C14 7.34 14 5 14 5s0-2.34-.3-3.44z" fill="currentColor"/>
-            <path d="M5.6 7.14L9.24 5 5.6 2.86v4.28z" fill="#1A1A1A"/>
+        <a href="https://www.instagram.com/lori.proj/" class="ig-link" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
           </svg>
-          YouTube
+          Instagram
         </a>
+      </li>
+      <li>
+        <a href="https://github.com/Fifthsol" class="gh-link" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
+      </li>
+      <li>
+        <button class="theme-toggle" aria-label="Toggle light mode" id="theme-toggle">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
       </li>
     </ul>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -52,127 +72,13 @@
 <section class="hero">
   <canvas id="particles"></canvas>
   <div class="container">
-    <p class="hero-eyebrow">Lifestyle · Travel · Everyday Moments</p>
-    <h1>Stories from a life<br><em>lived openly.</em></h1>
-    <p class="hero-sub">Welcome — I'm glad you're here. This is where I write about the moments, places, and thoughts that shape my days.</p>
+    <h1>Lawrence Sun's<br><em>Personal Blog</em></h1>
+    <p class="hero-sub">Hey all, this is the one and only Lawrence W. Sun's personal blog. Enjoy reading :)</p>
     <a href="archive.html" class="hero-cta">Browse all posts &rarr;</a>
   </div>
+  <button id="respawn-btn" aria-label="Respawn stars">✦ respawn stars</button>
 </section>
 
-<!-- FEATURED POST -->
-<section class="featured-section">
-  <div class="container">
-    <p class="section-label">Featured Post</p>
-    <article class="featured-post fade-in">
-      <div class="featured-image">
-        <!-- Replace src with your image. Example: <img src="images/post1.jpg" alt="Morning walk" /> -->
-        <div class="featured-placeholder"></div>
-      </div>
-      <div class="featured-content">
-        <p class="post-category">Travel</p>
-        <h2><a href="posts/post-template.html">What I Learned from Two Weeks Offline in the Mountains</a></h2>
-        <p class="post-excerpt">I packed one bag, left my routine behind, and spent two weeks in the quiet. Here's what came back with me when I returned.</p>
-        <div class="post-meta">
-          <span>June 15, 2026</span>
-          <span class="dot"></span>
-          <span>6 min read</span>
-        </div>
-        <br/>
-        <a href="posts/post-template.html" class="read-more">Read the post &rarr;</a>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- POST GRID -->
-<section class="posts-section">
-  <div class="container">
-    <p class="section-label">Recent Posts</p>
-    <div class="post-grid">
-
-      <article class="post-card fade-in">
-        <div class="post-card-image">
-          <div class="post-card-placeholder"></div>
-        </div>
-        <p class="post-category">Lifestyle</p>
-        <h3><a href="posts/post-template.html">My Morning Routine That Actually Stuck</a></h3>
-        <p class="post-excerpt">After years of failed 5am experiments, here's the gentle version that changed things.</p>
-        <div class="post-meta">
-          <span>June 8, 2026</span>
-          <span class="dot"></span>
-          <span>4 min read</span>
-        </div>
-      </article>
-
-      <article class="post-card fade-in">
-        <div class="post-card-image">
-          <div class="post-card-placeholder"></div>
-        </div>
-        <p class="post-category">Vlog</p>
-        <h3><a href="posts/post-template.html">A Weekend in the City With No Plans</a></h3>
-        <p class="post-excerpt">What happens when you leave the itinerary at home and just wander.</p>
-        <div class="post-meta">
-          <span>June 1, 2026</span>
-          <span class="dot"></span>
-          <span>3 min read</span>
-        </div>
-      </article>
-
-      <article class="post-card fade-in">
-        <div class="post-card-image">
-          <div class="post-card-placeholder"></div>
-        </div>
-        <p class="post-category">Thoughts</p>
-        <h3><a href="posts/post-template.html">On Slowing Down in a World That Won't</a></h3>
-        <p class="post-excerpt">A reflection on why I deleted three apps and started going on more walks.</p>
-        <div class="post-meta">
-          <span>May 24, 2026</span>
-          <span class="dot"></span>
-          <span>5 min read</span>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- YOUTUBE SECTION -->
-<section class="yt-section">
-  <div class="container">
-    <div class="yt-inner">
-      <div class="yt-text fade-in">
-        <p class="section-label">On YouTube</p>
-        <h2>The visual side of the story</h2>
-        <p>What I can't quite put into words, I film. New videos every week — come watch the moments that started as drafts here.</p>
-        <a href="https://youtube.com/@yourchannel" class="yt-btn" target="_blank" rel="noopener">
-          <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M15.66 1.87A2 2 0 0 0 14.26.47C13 .12 8 .12 8 .12S3 .12 1.74.47A2 2 0 0 0 .34 1.87C0 3.13 0 5.71 0 5.71s0 2.58.34 3.84A2 2 0 0 0 1.74 11c1.26.35 6.26.35 6.26.35s5 0 6.26-.35a2 2 0 0 0 1.4-1.45C16 8.29 16 5.71 16 5.71s0-2.58-.34-3.84z" fill="white"/>
-            <path d="M6.4 8.57L10.56 5.71 6.4 2.86v5.71z" fill="red"/>
-          </svg>
-          Watch on YouTube
-        </a>
-      </div>
-      <div class="yt-preview fade-in">
-        <!-- You can embed a YouTube video here:
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen style="border-radius:2px;"></iframe>
-        -->
-        <span>Latest video</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NEWSLETTER -->
-<section class="newsletter-section">
-  <div class="container">
-    <h2>Stay in the loop</h2>
-    <p>New posts, once or twice a month. No noise, no spam — just writing.</p>
-    <form class="newsletter-form" novalidate>
-      <input type="email" placeholder="Your email address" required aria-label="Email address" />
-      <button type="submit">Subscribe</button>
-    </form>
-  </div>
-</section>
 
 <!-- FOOTER -->
 <footer>
@@ -183,7 +89,8 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="archive.html">Posts</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="https://youtube.com/@yourchannel" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://www.instagram.com/lori.proj/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://github.com/Fifthsol" target="_blank" rel="noopener">GitHub</a></li>
       </ul>
       <span class="footer-copy">&copy; 2026 Lawrence Sun</span>
     </div>

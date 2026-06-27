@@ -1,3 +1,13 @@
+// === THEME TOGGLE ===
+const themeBtn = document.getElementById('theme-toggle');
+if (themeBtn) {
+  if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light');
+    localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+  });
+}
+
 // === NAV SCROLL BEHAVIOR ===
 const nav = document.querySelector('.nav');
 if (nav) {
@@ -62,6 +72,15 @@ const canvas = document.getElementById('particles');
 if (canvas) {
   const ctx = canvas.getContext('2d');
   let dots = [];
+  let mouse = { x: -999, y: -999 };
+  const REPEL_RADIUS = 80;
+  const REPEL_STRENGTH = 3;
+
+  window.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
 
   const resize = () => {
     canvas.width = canvas.offsetWidth;
@@ -70,13 +89,31 @@ if (canvas) {
   window.addEventListener('resize', resize);
   resize();
 
-  for (let i = 0; i < 180; i++) {
-    dots.push({
+  const makeDot = () => {
+    const dx = (Math.random() - 0.5) * 1.2;
+    const dy = (Math.random() - 0.5) * 1.2;
+    return {
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       r: Math.random() * 4 + 1,
-      dx: (Math.random() - 0.5) * 1.2,
-      dy: (Math.random() - 0.5) * 1.2,
+      dx, dy,
+      baseDx: dx, baseDy: dy,
+      angle: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.02,
+      opacity: 0.7 + Math.random() * 0.3,
+      flickerSpeed: 0.02 + Math.random() * 0.05,
+    };
+  };
+
+  for (let i = 0; i < 180; i++) {
+    dots.push(makeDot());
+  }
+
+  const respawnBtn = document.getElementById('respawn-btn');
+  if (respawnBtn) {
+    respawnBtn.addEventListener('click', () => {
+      dots = [];
+      for (let i = 0; i < 180; i++) dots.push(makeDot());
     });
   }
 
@@ -85,8 +122,13 @@ if (canvas) {
     dots.forEach(d => {
       ctx.save();
       ctx.translate(d.x, d.y);
-      ctx.strokeStyle = 'rgba(196, 135, 42, 0.9)';
-      ctx.fillStyle = 'rgba(255, 230, 0, 0.9)';
+      ctx.rotate(d.angle);
+      d.angle += d.rotSpeed;
+      d.opacity += (Math.random() - 0.5) * d.flickerSpeed;
+      d.opacity = Math.max(0.2, Math.min(1, d.opacity));
+      const light = document.body.classList.contains('light');
+      ctx.strokeStyle = light ? `rgba(30, 100, 200, ${d.opacity})` : `rgba(196, 135, 42, ${d.opacity})`;
+      ctx.fillStyle = light ? `rgba(80, 150, 255, ${d.opacity})` : `rgba(255, 230, 0, ${d.opacity})`;
       ctx.lineWidth = 0.8;
 
       ctx.beginPath();
@@ -101,6 +143,16 @@ if (canvas) {
         ctx.lineTo(Math.cos(angle) * (d.r + 5), Math.sin(angle) * (d.r + 5));
         ctx.stroke();
       }
+      const mx = mouse.x - d.x;
+      const my = mouse.y - d.y;
+      const dist = Math.sqrt(mx * mx + my * my);
+      if (dist < REPEL_RADIUS && dist > 0) {
+        const force = (REPEL_RADIUS - dist) / REPEL_RADIUS * REPEL_STRENGTH;
+        d.dx -= (mx / dist) * force;
+        d.dy -= (my / dist) * force;
+      }
+      d.dx += (d.baseDx - d.dx) * 0.05;
+      d.dy += (d.baseDy - d.dy) * 0.05;
       d.x += d.dx;
       d.y += d.dy;
       if (d.x < 0 || d.x > canvas.width) d.dx *= -1;
