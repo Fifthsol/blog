@@ -1,13 +1,3 @@
-// === THEME TOGGLE ===
-const themeBtn = document.getElementById('theme-toggle');
-if (themeBtn) {
-  if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
-  themeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('light');
-    localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
-  });
-}
-
 // === NAV SCROLL BEHAVIOR ===
 const nav = document.querySelector('.nav');
 if (nav) {
@@ -126,9 +116,8 @@ if (canvas) {
       d.angle += d.rotSpeed;
       d.opacity += (Math.random() - 0.5) * d.flickerSpeed;
       d.opacity = Math.max(0.2, Math.min(1, d.opacity));
-      const light = document.body.classList.contains('light');
-      ctx.strokeStyle = light ? `rgba(30, 100, 200, ${d.opacity})` : `rgba(196, 135, 42, ${d.opacity})`;
-      ctx.fillStyle = light ? `rgba(80, 150, 255, ${d.opacity})` : `rgba(255, 230, 0, ${d.opacity})`;
+      ctx.strokeStyle = `rgba(196, 135, 42, ${d.opacity})`;
+      ctx.fillStyle = `rgba(255, 230, 0, ${d.opacity})`;
       ctx.lineWidth = 0.8;
 
       ctx.beginPath();

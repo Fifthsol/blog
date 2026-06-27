@@ -12,18 +12,6 @@
   --nav-bg: rgba(8, 13, 22, 0.75);
 }
 
-body.light {
-  --bg: #E8F4FD;
-  --text: #0D2A3D;
-  --text-muted: #4878A0;
-  --accent: #C4872A;
-  --accent-dark: #9A6520;
-  --divider: #C0D8EE;
-  --white: #F0F8FF;
-  --green: #CCE8F8;
-  --glow: rgba(30, 100, 180, 0.12);
-  --nav-bg: rgba(232, 244, 253, 0.85);
-}
 
 :root {
 
@@ -88,15 +76,6 @@ body::after {
   animation: scanline-flicker 3s infinite;
 }
 
-body.light::after {
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 2px,
-    rgba(0, 20, 60, 0.025) 2px,
-    rgba(0, 20, 60, 0.025) 4px
-  );
-}
 
 /* === TYPOGRAPHY === */
 h1, h2, h3, h4 {
@@ -201,18 +180,6 @@ h1, h2, h3, h4 {
   gap: 0.75rem;
 }
 
-.theme-toggle {
-  background: none;
-  border: 1px solid var(--divider);
-  border-radius: 2px;
-  cursor: pointer;
-  padding: 0.35rem 0.5rem;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  transition: color 0.2s, border-color 0.2s;
-}
-.theme-toggle:hover { color: var(--text); border-color: var(--text-muted); }
 
 /* === LAYOUT === */
 .container {
