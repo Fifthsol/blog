@@ -344,14 +344,114 @@ button, .hero-cta, .read-more, #respawn-btn {
 #respawn-btn:hover::before { margin-right: 0.9rem; }
 #respawn-btn:hover::after  { margin-left: 0.9rem; }
 
+#blackhole-btn {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 14rem;
+  z-index: 3;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: 'Bitcount Prop Single', var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+#blackhole-btn::before { content: '['; margin-right: 0.5rem; transition: margin 0.2s; }
+#blackhole-btn::after  { content: ']'; margin-left: 0.5rem;  transition: margin 0.2s; }
+#blackhole-btn:hover, #blackhole-btn.active { color: var(--text); }
+#blackhole-btn.active { color: rgba(180, 100, 255, 0.9); }
+#blackhole-btn:hover::before, #blackhole-btn.active::before { margin-right: 0.9rem; }
+#blackhole-btn:hover::after,  #blackhole-btn.active::after  { margin-left: 0.9rem; }
+
+#supernova-hint {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 26rem;
+  z-index: 3;
+  font-family: 'Bitcount Prop Single', var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(180, 100, 255, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+  animation: supernova-pulse 1.8s infinite ease-in-out;
+}
+#supernova-hint.visible { opacity: 1; }
+
+@keyframes supernova-pulse {
+  0%, 100% { text-shadow: 0 0 6px rgba(180, 100, 255, 0.5); }
+  50%       { text-shadow: 0 0 14px rgba(200, 120, 255, 1), 0 0 30px rgba(160, 60, 255, 0.6); }
+}
+
+body.blackhole-cursor * { cursor: none !important; }
+
+#commit-log {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 3;
+  text-align: right;
+}
+
+.commit-log-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  opacity: 0.4;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+#commit-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+#commit-list li {
+  font-family: 'Courier New', monospace;
+  font-size: 0.6rem;
+  color: var(--text);
+  opacity: 0.3;
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: 0.75rem;
+  transition: opacity 0.2s;
+}
+
+#commit-list li:hover { opacity: 0.8; }
+
+#commit-list .commit-msg {
+  color: var(--text);
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#commit-list .commit-date {
+  color: var(--accent);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
 .hero::after {
   content: '';
   position: absolute;
-  bottom: -150px;
+  bottom: -220px;
   left: 0;
   right: 0;
-  height: 200px;
-  background: linear-gradient(to bottom, transparent, var(--bg));
+  height: 320px;
+  background: linear-gradient(to bottom, transparent 0%, var(--bg) 75%);
   pointer-events: none;
   z-index: 2;
 }
@@ -380,8 +480,21 @@ button, .hero-cta, .read-more, #respawn-btn {
   font-weight: 500;
   font-family: var(--font-body);
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--divider);
   margin-bottom: 2.5rem;
+}
+
+/* === GLASS PANEL === */
+.glass-panel {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 32px rgba(0, 0, 100, 0.15), inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
 /* === FEATURED POST === */
@@ -466,7 +579,7 @@ button, .hero-cta, .read-more, #respawn-btn {
 .read-more:hover::after  { margin-left: 0.9rem; }
 
 /* === POST GRID === */
-.posts-section { padding: 0 0 6rem; }
+.posts-section { padding: 0 0 6rem; position: relative; z-index: 5; }
 
 .post-grid {
   display: grid;
@@ -475,10 +588,31 @@ button, .hero-cta, .read-more, #respawn-btn {
 }
 
 
+.post-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow: 0 4px 32px rgba(0,0,100,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
+  overflow: hidden;
+  position: relative;
+  transition: box-shadow 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+.post-card:hover {
+  box-shadow: 0 8px 48px rgba(80,40,200,0.25), inset 0 1px 0 rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+}
+.post-card h3 a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
 .post-card-image {
   aspect-ratio: 16/10;
   overflow: hidden;
-  margin-bottom: 1.25rem;
   background: var(--divider);
 }
 
@@ -493,6 +627,12 @@ button, .hero-cta, .read-more, #respawn-btn {
   width: 100%; height: 100%;
   background: linear-gradient(135deg, #0D1E30 0%, #091420 100%);
 }
+
+.post-card .post-category,
+.post-card h3,
+.post-card .post-excerpt,
+.post-card .post-meta { padding: 0 1.25rem; }
+.post-card .post-meta { padding-bottom: 1.25rem; }
 
 .post-card h3 {
   font-size: 1.3rem;
@@ -725,15 +865,30 @@ footer {
 
 .about-photo {
   aspect-ratio: 3/4;
-  background: var(--divider);
   overflow: hidden;
   position: sticky;
   top: calc(var(--nav-height) + 2rem);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow: 0 4px 32px rgba(0,0,100,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
 .about-photo-placeholder {
   width: 100%; height: 100%;
   background: linear-gradient(160deg, #0D1E30 0%, #091420 100%);
+}
+
+.about-content {
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 4px 32px rgba(0,0,100,0.12), inset 0 1px 0 rgba(255,255,255,0.07);
+  padding: 2.5rem;
 }
 
 .about-content h1 {
@@ -755,11 +910,21 @@ footer {
   grid-template-columns: 6rem 1fr auto;
   gap: 1.5rem;
   align-items: baseline;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--divider);
-  transition: opacity 0.2s;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 2px 20px rgba(0,0,80,0.12), inset 0 1px 0 rgba(255,255,255,0.07);
+  transition: box-shadow 0.2s, transform 0.2s, opacity 0.2s;
 }
-.archive-item:hover { opacity: 0.7; }
+.archive-item:hover {
+  opacity: 1;
+  transform: translateX(4px);
+  box-shadow: 0 4px 32px rgba(80,40,200,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+}
 
 .archive-date {
   font-size: 0.8125rem;

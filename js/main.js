@@ -63,8 +63,12 @@ if (canvas) {
   const ctx = canvas.getContext('2d');
   let dots = [];
   let mouse = { x: -999, y: -999 };
+  let blackHoleMode = false;
   const REPEL_RADIUS = 80;
   const REPEL_STRENGTH = 3;
+  const ATTRACT_RADIUS = 260;
+  const ATTRACT_STRENGTH = 12;
+  const MAX_DOTS = 180;
 
   window.addEventListener('mousemove', e => {
     const rect = canvas.getBoundingClientRect();
@@ -95,9 +99,16 @@ if (canvas) {
     };
   };
 
-  for (let i = 0; i < 180; i++) {
+  for (let i = 0; i < MAX_DOTS; i++) {
     dots.push(makeDot());
   }
+
+  setInterval(() => {
+    if (dots.length < MAX_DOTS) {
+      const count = Math.min(3, MAX_DOTS - dots.length);
+      for (let i = 0; i < count; i++) dots.push(makeDot());
+    }
+  }, 800);
 
   const bgDots = [];
   for (let i = 0; i < 280; i++) {
@@ -115,14 +126,97 @@ if (canvas) {
 
   const respawnBtn = document.getElementById('respawn-btn');
   if (respawnBtn) {
-    respawnBtn.addEventListener('click', () => {
+    respawnBtn.addEventListener('click', e => {
+      e.stopPropagation();
       dots = [];
       for (let i = 0; i < 180; i++) dots.push(makeDot());
     });
   }
 
+  const supernovaHint = document.getElementById('supernova-hint');
+
+  const blackholeBtn = document.getElementById('blackhole-btn');
+  if (blackholeBtn) {
+    blackholeBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      blackHoleMode = !blackHoleMode;
+      blackholeBtn.classList.toggle('active', blackHoleMode);
+      document.body.classList.toggle('blackhole-cursor', blackHoleMode);
+      if (supernovaHint) supernovaHint.classList.toggle('visible', blackHoleMode);
+    });
+  }
+
+
+  const hero = canvas.closest('.hero');
+
+  if (hero) {
+    hero.addEventListener('mouseleave', () => {
+      if (!blackHoleMode) return;
+      blackHoleMode = false;
+      if (blackholeBtn) { blackholeBtn.classList.remove('active'); }
+      if (supernovaHint) supernovaHint.classList.remove('visible');
+      document.body.classList.remove('blackhole-cursor');
+    });
+  }
+
+  (hero || canvas).addEventListener('click', e => {
+    if (!blackHoleMode) return;
+    const rect = canvas.getBoundingClientRect();
+    const cx = e.clientX - rect.left;
+    const cy = e.clientY - rect.top;
+    const SUPERNOVA_RADIUS = 300;
+    const SUPERNOVA_FORCE = 18;
+    dots.forEach(d => {
+      const mx = d.x - cx;
+      const my = d.y - cy;
+      const dist = Math.sqrt(mx * mx + my * my);
+      if (dist < SUPERNOVA_RADIUS && dist > 0) {
+        const force = (SUPERNOVA_RADIUS - dist) / SUPERNOVA_RADIUS * SUPERNOVA_FORCE;
+        d.dx += (mx / dist) * force;
+        d.dy += (my / dist) * force;
+      }
+    });
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, 60, 0, Math.PI * 2);
+    const flash = ctx.createRadialGradient(cx, cy, 0, cx, cy, 60);
+    flash.addColorStop(0, 'rgba(255, 220, 100, 0.9)');
+    flash.addColorStop(0.4, 'rgba(180, 60, 255, 0.5)');
+    flash.addColorStop(1, 'rgba(180, 60, 255, 0)');
+    ctx.fillStyle = flash;
+    ctx.fill();
+    ctx.restore();
+
+    blackHoleMode = false;
+    if (blackholeBtn) blackholeBtn.classList.remove('active');
+    if (supernovaHint) supernovaHint.classList.remove('visible');
+    document.body.classList.remove('blackhole-cursor');
+  });
+
   const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (blackHoleMode && mouse.x > 0) {
+      const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, ATTRACT_RADIUS);
+      grad.addColorStop(0,   'rgba(0, 0, 0, 0.6)');
+      grad.addColorStop(0.2, 'rgba(60, 0, 120, 0.3)');
+      grad.addColorStop(1,   'rgba(60, 0, 120, 0)');
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, ATTRACT_RADIUS, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, 10, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.95)';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, 12, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(160, 60, 255, 0.8)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
 
     bgDots.forEach(b => {
       b.opacity += b.shimmerDir * b.shimmerSpeed;
@@ -163,13 +257,21 @@ if (canvas) {
       const mx = mouse.x - d.x;
       const my = mouse.y - d.y;
       const dist = Math.sqrt(mx * mx + my * my);
-      if (dist < REPEL_RADIUS && dist > 0) {
-        const force = (REPEL_RADIUS - dist) / REPEL_RADIUS * REPEL_STRENGTH;
-        d.dx -= (mx / dist) * force;
-        d.dy -= (my / dist) * force;
+      if (blackHoleMode) {
+        if (dist < ATTRACT_RADIUS && dist > 0) {
+          const force = (ATTRACT_RADIUS - dist) / ATTRACT_RADIUS * ATTRACT_STRENGTH;
+          d.dx += (mx / dist) * force * 0.08;
+          d.dy += (my / dist) * force * 0.08;
+        }
+      } else {
+        if (dist < REPEL_RADIUS && dist > 0) {
+          const force = (REPEL_RADIUS - dist) / REPEL_RADIUS * REPEL_STRENGTH;
+          d.dx -= (mx / dist) * force;
+          d.dy -= (my / dist) * force;
+        }
       }
-      d.dx += (d.baseDx - d.dx) * 0.05;
-      d.dy += (d.baseDy - d.dy) * 0.05;
+      d.dx += (d.baseDx - d.dx) * (blackHoleMode ? 0.005 : 0.05);
+      d.dy += (d.baseDy - d.dy) * (blackHoleMode ? 0.005 : 0.05);
       d.x += d.dx;
       d.y += d.dy;
       if (d.x < 0 || d.x > canvas.width) d.dx *= -1;
@@ -192,3 +294,23 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// === COMMIT LOG ===
+const commitList = document.getElementById('commit-list');
+if (commitList) {
+  fetch('https://api.github.com/repos/Fifthsol/blog/commits?per_page=6')
+    .then(r => r.json())
+    .then(commits => {
+      commitList.innerHTML = commits.map(c => {
+        const msg = c.commit.message.split('\n')[0];
+        const date = new Date(c.commit.author.date);
+        const rel = Math.floor((Date.now() - date) / 86400000);
+        const dateStr = rel === 0 ? 'today' : rel === 1 ? '1d ago' : `${rel}d ago`;
+        return `<li>
+          <span class="commit-msg">${msg}</span>
+          <span class="commit-date">${dateStr}</span>
+        </li>`;
+      }).join('');
+    })
+    .catch(() => { commitList.innerHTML = '<li><span class="commit-msg">no commits yet</span></li>'; });
+}
