@@ -1,6 +1,6 @@
 # 孙维五 — Personal Blog
 
-Dark solarpunk night aesthetic. Built from scratch with vanilla HTML, CSS, and JS.
+Dark solarpunk night aesthetic. Built from scratch with vanilla HTML, CSS, and JS with the help of Claude Code for formatting, bug fixes, and documentation.
 
 ## Stack
 
