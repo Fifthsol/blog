@@ -99,6 +99,20 @@ if (canvas) {
     dots.push(makeDot());
   }
 
+  const bgDots = [];
+  for (let i = 0; i < 280; i++) {
+    bgDots.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.2 + 0.2,
+      dx: (Math.random() - 0.5) * 0.18,
+      dy: (Math.random() - 0.5) * 0.18,
+      opacity: 0.15 + Math.random() * 0.65,
+      shimmerSpeed: 0.005 + Math.random() * 0.018,
+      shimmerDir: Math.random() > 0.5 ? 1 : -1,
+    });
+  }
+
   const respawnBtn = document.getElementById('respawn-btn');
   if (respawnBtn) {
     respawnBtn.addEventListener('click', () => {
@@ -109,6 +123,20 @@ if (canvas) {
 
   const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    bgDots.forEach(b => {
+      b.opacity += b.shimmerDir * b.shimmerSpeed;
+      if (b.opacity >= 0.8 || b.opacity <= 0.05) b.shimmerDir *= -1;
+      b.x += b.dx;
+      b.y += b.dy;
+      if (b.x < 0 || b.x > canvas.width) b.dx *= -1;
+      if (b.y < 0 || b.y > canvas.height) b.dy *= -1;
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${b.opacity})`;
+      ctx.fill();
+    });
+
     dots.forEach(d => {
       ctx.save();
       ctx.translate(d.x, d.y);
