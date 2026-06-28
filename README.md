@@ -1,6 +1,6 @@
 # 孙维五 — Personal Blog
 
-Dark solarpunk night aesthetic. Built from scratch with vanilla HTML, CSS, and JS — no frameworks, no build step.
+Dark solarpunk night aesthetic. Built from scratch with vanilla HTML, CSS, and JS with the help of Claude Code for formatting, bug fixes, and documentation.
 
 ## Stack
 
@@ -17,9 +17,9 @@ blog/
 
 ## Features
 
-- Floating sun particles in the hero — interactive, repelled by cursor, slowly rotate and flicker
-- Black hole mode — cursor attracts suns instead of repelling, click to supernova
-- Background star field — separate white dot layer, shimmers independently
+- Floating sun particles in the hero: interactive, repelled by cursor, slowly rotate and flicker
+- Black hole mode: cursor attracts suns instead of repelling, click to supernova
+- Background star field: separate white dot layer, shimmers independently
 - CRT scanline overlay with slow flicker animation
 - Purple vignette around screen edges
 - Glassy frosted panels for post cards and archive items
