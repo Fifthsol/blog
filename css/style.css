@@ -228,15 +228,15 @@ button, .hero-cta, .read-more, #respawn-btn {
 
 .nav-links .ig-link,
 .nav-links .gh-link {
-  color: rgba(200, 180, 240, 0.75);
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  color: rgba(120, 110, 135, 0.55);
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border: none;
   border-radius: 0;
-  padding: 0.4rem 0.6rem;
+  padding: 0;
   filter: none;
-  transition: filter 0.15s, color 0.15s, background 0.2s, border-color 0.2s;
+  transition: filter 0.15s, color 0.15s;
 }
 
 .nav-links .ig-link:hover,
